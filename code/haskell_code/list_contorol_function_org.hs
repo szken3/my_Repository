@@ -1,22 +1,28 @@
 --[WIP]
 
-length' :: [a] -> Int
-  length' []     = 0
-  length' (_:xs) = 1 + length' xs
 
-sum' :: [a] -> Int
-  sum'[]          = 0
-  sum' (x:xs)     = x + sum' xs
+length' []     = 0
+length' (_:xs) = 1 + length' xs
 
-product' :: [a] -> Int
-  product' []     = 0
-  product' (x:xs) = x * product' xs
+sum'[]          = 0
+sum' (x:xs)     = x + sum' xs
 
-take' :: Int -> [a] -> a
-  take' []        = 0
-  take' n:_ |
+product' []     = 0
+product' (x:xs) = x * product' xs
+
+take' _ []        = 0
+take' n _ | n < 1 = 0
+take' n (x:xs)    = x:take' (n - 1) xs
+
+drop' _ []             = 0
+drop' n (x:xs) | n < 1 = xs
+drop' n (_:xs)         = drop'(n - 1) xs
+
+reverse' []       = 0
+reverse'(x:xs)    = reverse' xs ++ [x]
+
+fact n = product[1..n]
+
 
 main = do
     print $ length' [1, 2, 3]
-
-length' :: [a] -> Int
